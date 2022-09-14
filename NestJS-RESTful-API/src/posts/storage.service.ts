@@ -49,7 +49,7 @@ export class StorageService {
     var splitArrays = await this.chunk(nftData, 10);
 
     for await (const nftPerArray of splitArrays) {
-      await this.prepareAssetBulk(nftPerArray);
+      this.prepareAssetBulk(nftPerArray);
     }
 
     // await Promise.all([
