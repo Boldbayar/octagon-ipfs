@@ -29,9 +29,10 @@ export class StorageService {
     });
 
     const nftImage = await this.getImageFromUrl(nft.imgOriginalUrl);
+    const strippedDesc = nft.description.replace(/(<([^>]+)>)/gi, '');
     const metadata = await this.nftStorage.store({
       name: nft.name,
-      description: nft.description,
+      description: strippedDesc,
       image: nftImage,
       attributes: polygonAttribute,
     });
