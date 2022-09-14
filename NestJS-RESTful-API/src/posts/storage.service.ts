@@ -44,12 +44,6 @@ export class StorageService {
     return await Promise.resolve();
   }
 
-  private sleep(time) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, time || 1000);
-    });
-  }
-
   public async storeBulk(nftData: Array<any>): Promise<Array<StorageModel>> {
     var splitArrays = await this.chunk(nftData, 10);
 
@@ -68,7 +62,7 @@ export class StorageService {
           await this.uploadNftMetadata(nftsToStore[i]);
         });
       }
-      await new Promise((r) => setTimeout(r, 20000));
+      await new Promise((r) => setTimeout(r, 10000));
     }
   }
 
