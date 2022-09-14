@@ -8,6 +8,7 @@ import { StorageModel } from './storage.interface';
 import { ApiModel } from './models/api-model.interface';
 import fireAndForgetter from 'fire-and-forgetter';
 import { NFTStorage, Blob } from 'nft.storage';
+import fetch from 'cross-fetch';
 
 const AUTH_URL = 'http://localhost:8080/auth-api';
 const MANAGE_URL = 'https://manage-api.octagon.mn/manage';
