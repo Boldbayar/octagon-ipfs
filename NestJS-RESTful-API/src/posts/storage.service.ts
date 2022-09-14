@@ -46,13 +46,18 @@ export class StorageService {
 
   public async storeBulk(nftData: Array<any>): Promise<Array<StorageModel>> {
     this.prepareAssetBulk(nftData);
-    var splitArrays = await this.chunk(nftData, 20);
-    await Promise.all([
-      this.prepareAssetBulk(splitArrays[0]),
-      this.prepareAssetBulk(splitArrays[1]),
-      this.prepareAssetBulk(splitArrays[2]),
-      this.prepareAssetBulk(splitArrays[3]),
-    ]);
+    var splitArrays = await this.chunk(nftData, 10);
+
+    for await (const nftPerArray of splitArrays) {
+      await this.prepareAssetBulk(nftPerArray);
+    }
+
+    // await Promise.all([
+    //   this.prepareAssetBulk(splitArrays[0]),
+    //   this.prepareAssetBulk(splitArrays[1]),
+    //   this.prepareAssetBulk(splitArrays[2]),
+    //   this.prepareAssetBulk(splitArrays[3]),
+    // ]);
 
     return null;
   }
