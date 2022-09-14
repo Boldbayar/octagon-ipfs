@@ -62,7 +62,7 @@ export class StorageService {
           await this.uploadNftMetadata(nftsToStore[i]);
         });
       }
-      await new Promise((r) => setTimeout(r, 10000));
+      await new Promise((r) => setTimeout(r, 30000));
     }
   }
 
