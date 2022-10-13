@@ -13,8 +13,8 @@ export class StorageController {
   @Get('find-all-nft')
   async findByFilter(@Query('collectionId') collectionId: String) {
     const allNftData = this.storageService.findAllNft(collectionId);
-    this.storageService.storeBulk(await allNftData);
+    // this.storageService.storeBulk(await allNftData);
 
-    return true;
+    return allNftData;
   }
 }

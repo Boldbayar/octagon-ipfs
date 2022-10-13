@@ -46,7 +46,7 @@ export class StorageService {
   }
 
   public async storeBulk(nftData: Array<any>): Promise<Array<StorageModel>> {
-    var splitArrays = await this.chunk(nftData, 10);
+    var splitArrays = await this.chunk(nftData, 190);
 
     for await (const nftPerArray of splitArrays) {
       await Promise.all([this.prepareAssetBulk(nftPerArray)]);
@@ -63,7 +63,7 @@ export class StorageService {
           await this.uploadNftMetadata(nftsToStore[i]);
         });
       }
-      await new Promise((r) => setTimeout(r, 30000));
+      await new Promise((r) => setTimeout(r, 60000));
     }
   }
 
